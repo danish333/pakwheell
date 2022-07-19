@@ -1,0 +1,541 @@
+@charset "UTF-8";
+/*
+sass 7–1 pattern/
+|
+|– abstracts/ (or utilities/)
+|   |– _variables.scss    // Sass Variables
+|   |– _functions.scss    // Sass Functions
+|   |– _mixins.scss       // Sass Mixins
+|
+|– base/
+|   |– _base.scss         // Reset/normalize
+|   |– _typography.scss   // Typography rules
+|   |– _utilities.scss    // Utility/helper rules
+|   |– _animations.scss   // Animation rules
+|
+|– components/ (or modules/)
+|   |– _buttons.scss      // Buttons
+|   |– _carousel.scss     // Carousel
+|   |– _slider.scss       // Slider
+|
+|– layout/
+|   |– _navigation.scss   // Navigation
+|   |– _grid.scss         // Grid system
+|   |– _header.scss       // Header
+|   |– _footer.scss       // Footer
+|   |– _sidebar.scss      // Sidebar
+|   |– _forms.scss        // Forms
+|
+|– pages/
+|   |– _home.scss         // Home specific styles
+|   |– _about.scss        // About specific styles
+|   |– _contact.scss      // Contact specific styles
+|
+|– themes/
+|   |– _theme.scss        // Default theme
+|   |– _admin.scss        // Admin theme
+|
+|– vendors/
+|   |– _bootstrap.scss    // Bootstrap
+|   |– _jquery-ui.scss    // jQuery UI
+|
+`– main.scss              // Main Sass file
+*/
+/*
+
+0 - 600      => 37.5em      Phone
+600 - 992    => 62em        Tablet (portrait)
+992 - 1200   => 75em        Tablet (landscape)
+1200 - 1800  => 112.5em     Desktop style
+1800+        => 112.5em     Big desktop
+
+$breakpoint argument choices
+- phone
+- tab-port
+- tab-land
+- desktop
+- big-desktop
+
+when user changes the default fontsize in the browsers our mediaquery with px are not effected
+In media queries when using em or rems both units take root font size from browser which is 16px
+but not takes root font size that we set earlier in the html selector definition
+here we're using ems because rems have some issues in different browsers when used in media qureies
+so 1em = 16px which is the browser's root font size
+so 
+media-query-px / root-size-browser => 600px/16px = 37.5em
+
+*/
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/* width */
+/* Track */
+/* Handle */
+/* Handle on hover */
+html {
+  font-size: 62.5%;
+}
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.2%;
+  }
+}
+@media only screen and (max-width: 62em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  list-style: none;
+  font-size: 1.4rem;
+  font-family: "Lato", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+a:hover, a:active {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+figure {
+  margin: 0;
+}
+
+button {
+  border: none;
+}
+button:focus {
+  outline: none;
+}
+
+.p-dark-color {
+  background-color: #8F292D;
+}
+
+.p-blue-color {
+  background-color: #518ECB;
+}
+
+.g-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media only screen and (min-width: 1200px) {
+  .g-container {
+    width: 1020px;
+  }
+}
+
+.header-container {
+  width: 100%;
+  background-color: transparent;
+}
+.header-container__wrapper {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.header-container__top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #302f2e;
+}
+.header-container__top-bar .download-app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2px;
+  font-size: 14px;
+  padding: 3px 7px;
+  font-weight: 400;
+  color: #fff;
+}
+.header-container__top-bar .download-app i {
+  color: #b73439;
+  font-size: 1.9rem;
+  vertical-align: -5px;
+  margin-right: 5px;
+}
+.header-container__top-bar .lang-and-register {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+.header-container__top-bar .lang-and-register .change-lang {
+  color: #b73439;
+}
+.header-container__top-bar .lang-and-register a {
+  font-size: 1.4rem;
+  font-weight: 400;
+  display: block;
+  line-height: 24px;
+}
+.header-container__top-bar .lang-and-register .register-link {
+  color: #fff;
+}
+.header-container__top-bar .lang-and-register .register-link::before {
+  content: "|";
+  color: rgba(123, 131, 151, 0.7);
+  display: inline-block;
+  margin-right: 0.8rem;
+}
+.header-container__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header-container__header .logo-wrapper {
+  height: 40px;
+  margin: 13px auto 0px;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+.header-container__header .logo-wrapper .web-logo {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.header-container__nav-items {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header-container__nav-link .menu-link {
+  display: block;
+  height: 55px;
+  line-height: 55px;
+  padding: 0 22px;
+  color: #fff;
+  font-size: 16px;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+}
+.header-container__nav-link i {
+  font-size: 12px;
+  max-width: 6px;
+  display: inline-block;
+  margin: 0;
+}
+.header-container .post-add button {
+  background-color: #b73439 !important;
+  color: #fff !important;
+  height: 40px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  padding: 0 22px;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+}
+
+.section-banner {
+  width: 100%;
+  background: url(/img/banner-bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  margin-top: -100px;
+  padding-top: 100px;
+  background: rgb(1, 52, 111);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(18%, rgb(1, 52, 111)), color-stop(84%, rgb(0, 7, 14)));
+  background: linear-gradient(0deg, rgb(1, 52, 111) 18%, rgb(0, 7, 14) 84%);
+  position: relative;
+}
+.section-banner .banner-overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  margin-top: 10rem;
+}
+.section-banner .search-text {
+  color: #fff;
+  text-align: center;
+  padding-bottom: 28px;
+  line-height: 22px;
+  position: relative;
+  z-index: 6;
+}
+.section-banner .search-text h1 {
+  font-size: 3.8rem;
+  line-height: normal;
+  font-weight: normal;
+  margin: 0;
+  color: #fff;
+}
+.section-banner .search-text p {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+}
+.section-banner .search-list_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 4px;
+}
+.section-banner .search-list_items .normal-search input {
+  height: 50px;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: none;
+}
+.section-banner .search-list_items > li:nth-child(1) {
+  width: 324px;
+}
+.section-banner .search-list_items > li:nth-child(2) {
+  width: 220px;
+}
+.section-banner .search-list_items .seacrh-btn button {
+  height: 50px;
+  border-radius: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  font-size: 22px;
+  color: #fff;
+  background-color: #3eb549;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33333;
+}
+.section-banner .search-list_items .city-filter .dropdown-toggle::after, .section-banner .search-list_items .price-range .dropdown-toggle::after {
+  margin-left: 0;
+}
+.section-banner .search-list_items .box .selectpicker {
+  height: 50px;
+  font-size: 1.8rem;
+}
+.section-banner .search-list_items input {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+}
+.section-banner .search-list_items input::-webkit-input-placeholder {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.section-banner .search-list_items input::-moz-placeholder {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.section-banner .search-list_items input:-ms-input-placeholder {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.section-banner .search-list_items input::-ms-input-placeholder {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.section-banner .search-list_items input::placeholder {
+  font-size: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.section-banner .adv-filter {
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 2rem;
+}
+.section-banner .adv-filter a {
+  border: 1px solid #fff;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-color: #fff;
+  padding: 4px 25px;
+  font-size: 11px;
+  color: #fff;
+}
+.section-banner .adv-filter a i {
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+.box .selectpicker option {
+  border: none;
+  background-color: white;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #14B1B2;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+  padding-left: 0;
+  margin-top: -20px;
+  background: none;
+}
+.box select.selectpicker {
+  border: none;
+  background-color: white;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #14B1B2;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+  padding-left: 0;
+  margin-top: -20px;
+  background: none;
+}
+
+.section-notice__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.section-notice__list img {
+  width: 2rem;
+}
+
+.hero-section__heading {
+  text-align: center;
+}
+.hero-section__wrapper {
+  text-align: center;
+}
+.hero-section__wrapper-title {
+  text-align: center;
+}
+.hero-section__items {
+  text-align: center;
+}
+.hero-section__footer {
+  text-align: center;
+}
+
+/*
+
+Abstracts (or utilities): holds Sass tools, helper files, variables, functions, mixins and other config files.
+These files are meant to be just helpers which don’t output any CSS when compiled.
+
+Base: holds the boilerplate code for the project. Including standard styles such as resets and typographic rules,
+which are commonly used throughout your project.
+
+Components (or modules): holds all of your styles for buttons, carousels, sliders, and similar page components 
+(think widgets). Your project will typically contain a lot of component files — as the whole site/app should
+be mostly composed of small modules.
+
+Layout: contains all styles involved with the layout of your project. Such as styles for your header,
+footer, navigation and the grid system.
+
+Pages: any styles specific to individual pages will sit here. For example it’s not uncommon for the home page
+of your site to require page specific styles that no other page receives.
+
+Themes: this is likely not used in many projects. It would hold files that create project specific themes.
+For example if sections of your site contain alternate color schemes.
+
+Vendors: contains all third party code from external libraries and frameworks — such as Normalize, 
+Bootstrap, jQueryUI, etc. However, there is often a need to override vendor code. If this is required, 
+its good practice to create a new folder called vendors-extensions/ and then name any files after the 
+vendors they overwrite. The filevendors-extensions/_bootstrap.scss would contain all your Bootstrap 
+overrides — as editing the vendor files themselves, isn’t generally a good idea.
+
+Main.scss: This file should only contain your imports!
+
+*/
+/*# sourceMappingURL=main.css.map */

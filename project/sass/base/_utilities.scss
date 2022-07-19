@@ -1,0 +1,15 @@
+.p-dark-color{
+  background-color: #8F292D;
+}
+.p-blue-color {
+  background-color: #518ECB;
+}
+.g-container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  @media only screen and (min-width:1200px){
+    width: 1020px;
+  }
+}
